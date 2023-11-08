@@ -1,3 +1,4 @@
+VOC2007
 Lr: [0.001 0.01 ]
 2023-11-06 18:01:48, 8 Epoch, 0 Iter, Loss: 0.2820, Data time: 2.1193, Batch time: 2.9839
 2023-11-06 18:02:56, 8 Epoch, 50 Iter, Loss: 0.1051, Data time: 0.0008, Batch time: 0.5079
