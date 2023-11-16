@@ -104,13 +104,13 @@ class COCO2014(Dataset):
         self.phase = phase
         self.img_list = []
         self.transform = transform
-        download_coco2014(self.root, phase)
+        # download_coco2014(self.root, phase)
         self.get_anno()
         self.num_classes = len(self.cat2idx)
         print('[dataset] COCO2014 classification phase={} number of classes={}  number of images={}'.format(phase, self.num_classes, len(self.img_list)))
 
     def get_anno(self):
-        list_path = os.path.join(self.root, '{}_anno.json'.format(self.phase))
+        list_path = os.path.join(self.root.replace('/coco2014', '/annotations_coco2014'), '{}_anno.json'.format(self.phase))
         self.img_list = json.load(open(list_path, 'r'))
         #self.img_list = self.img_list[:20000]
         self.cat2idx = json.load(open(os.path.join(self.root, 'category.json'), 'r'))

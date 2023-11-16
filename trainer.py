@@ -55,7 +55,7 @@ class Trainer(object):
 
         self.initialize_meters()
 
-        # load checkpoint if args.resume is a valid checkpint file.
+        # load checkpoint if args.resume is a valid checkpoint file.
         if os.path.isfile(self.args.resume) and self.args.resume.endswith('pth'):
             self.load_checkpoint()
 
@@ -242,7 +242,7 @@ class Trainer(object):
     # only for original pretrained model 
     def load_origin_checkpoint(self):
         print("* Loading checkpoint '{}'".format(self.args.resume))
-        checkpoint = torch.load(self.args.resume)
+        checkpoint = torch.load(self.args.resume, map_location=torch.device('cpu'))
         self.start_epoch = checkpoint['epoch']
         self.best_score = checkpoint['best_score']
         model_dict = self.model.state_dict()
