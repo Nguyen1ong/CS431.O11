@@ -110,10 +110,12 @@ class COCO2014(Dataset):
         print('[dataset] COCO2014 classification phase={} number of classes={}  number of images={}'.format(phase, self.num_classes, len(self.img_list)))
 
     def get_anno(self):
-        list_path = os.path.join(self.root.replace('/coco2014', '/annotations_coco2014'), '{}_anno.json'.format(self.phase))
+        annotation_path = '/kaggle/input/annotations'
+        print(annotation_path)
+        list_path = os.path.join(annotation_path, '{}_anno.json'.format(self.phase))
         self.img_list = json.load(open(list_path, 'r'))
         #self.img_list = self.img_list[:20000]
-        self.cat2idx = json.load(open(os.path.join(self.root, 'category.json'), 'r'))
+        self.cat2idx = json.load(open(os.path.join(annotation_path, 'category.json'), 'r'))
 
     def __len__(self):
         return len(self.img_list)
@@ -122,7 +124,7 @@ class COCO2014(Dataset):
         item = self.img_list[index]
         filename = item['file_name']
         labels = sorted(item['labels'])
-        img = Image.open(os.path.join(self.root, '{}2014'.format(self.phase), filename)).convert('RGB')
+        img = Image.open(os.path.join(self.root, '{}2014/{}2014'.format(self.phase,self.phase), filename)).convert('RGB')
         if self.transform is not None:
             img = self.transform(img)
         # target = np.zeros(self.num_classes, np.float32) - 1

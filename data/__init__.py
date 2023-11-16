@@ -130,7 +130,7 @@ def make_data_loader(args, is_train=True):
 
     # Build val_loader
     transform = get_transform(args, is_train=False)
-    if args.data == 'COCO2014':
+    if args.data == 'coco2014':
         val_dataset = COCO2014(root_dir, phase='val', transform=transform)
     elif args.data in ('VOC2007', 'VOC2012'):
         val_dataset = data_dict['VOC2007'](root_dir, phase='test', transform=transform)
@@ -147,7 +147,7 @@ def make_data_loader(args, is_train=True):
     
     # Build train_loader
     transform = get_transform(args, is_train=True)
-    if args.data == 'COCO2014':
+    if args.data == 'coco2014':
         train_dataset = COCO2014(root_dir, phase='train', transform=transform)
     elif args.data in ('VOC2007', 'VOC2012'):
         train_dataset = data_dict[args.data](root_dir, phase='trainval', transform=transform)
